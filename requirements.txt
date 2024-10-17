@@ -1,0 +1,10 @@
+pandas
+numpy
+dash
+dash-bootstrap-components
+scipy
+plotly
+kaleido
+fpdf
+matplotlib
+Pillow

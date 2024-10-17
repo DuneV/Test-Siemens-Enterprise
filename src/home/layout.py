@@ -27,10 +27,23 @@ layout = dbc.Container([
             dbc.Col(
                 [
                     html.Label('Period', style={'textAlign': 'center', 'display': 'block'}),
-                    dcc.Input(
-                        id='input-1',
-                        type='number',
-                        placeholder='Ingresa el valor 1',
+                    dcc.Dropdown(  # Cambiado a Dropdown
+                        id='input-1',  # Mismo ID para que siga funcionando
+                        options=[
+                            {'label': 'P1', 'value': 'P1'},
+                            {'label': 'P2', 'value': 'P2'},
+                            {'label': 'P3', 'value': 'P3'},
+                            {'label': 'P4', 'value': 'P4'},
+                            {'label': 'P5', 'value': 'P5'},
+                            {'label': 'P6', 'value': 'P5'},
+                            {'label': 'P7', 'value': 'P7'},
+                            {'label': 'P8', 'value': 'P8'},
+                            {'label': 'P9', 'value': 'P9'},
+                            {'label': 'P10', 'value': 'P10'}, 
+                            {'label': 'P11', 'value': 'P11'},
+                            {'label': 'P12', 'value': 'P12'},
+                        ],
+                        placeholder='Selecciona el Periodo',
                         style={'width': '100%', 'textAlign': 'center'}
                     )
                 ],
@@ -42,7 +55,7 @@ layout = dbc.Container([
                     dcc.Input(
                         id='input-2',
                         type='number',
-                        placeholder='Ingresa el valor 2',
+                        placeholder='First year Fail',
                         style={'width': '100%', 'textAlign': 'center'}
                     )
                 ],

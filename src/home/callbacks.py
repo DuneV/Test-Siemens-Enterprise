@@ -20,6 +20,10 @@ def process_manual_input(n_clicks, input1, input2, input3, input4):
             if input1 is None or input2 is None or input3 is None or input4 is None:
                 return dbc.Alert("Por favor, ingresa todos los valores.", color="danger")
 
+            if input2 <= 0:
+                return dbc.Alert("El valor de 'FY' (input 2) debe ser un número positivo.", color="danger")
+
+
             # Procesar los valores ingresados
             result = f'Valores ingresados: Periodo: {input1}, FY: {input2}, Units tested: {input3}, Units Failed: {input4}'      
 
@@ -31,3 +35,21 @@ def process_manual_input(n_clicks, input1, input2, input3, input4):
             error_msg = dbc.Alert(f"Hubo un error al procesar los datos: {str(e)}", color="danger")
             return error_msg
     return ''
+
+def process_info(input1, input2, input3, input4):
+    conn = sqlite3.connect('my_database.db')  # Reemplazar con la conexión
+    cursor = conn.cursor()
+    # Crear una tabla si no existe
+    cursor.execute('''CREATE TABLE IF NOT EXISTS inputs (
+                     id INTEGER PRIMARY KEY AUTOINCREMENT,
+                     input1 TEXT,
+                     input2 INT,
+                     input3 INT, 
+                     input4 INT
+                   )''')
+    # Insertar los valores
+    cursor.execute("INSERT INTO inputs (input1, input2, input3, input4) VALUES (?, ?, ?, ?)", 
+                (input1, input2, input3, input4))
+    
+    conn.commit()
+    conn.close()

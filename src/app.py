@@ -16,7 +16,7 @@ app = Dash(
 )
 
 # Establecer el título de la aplicación
-app.title = "Análisis de Señales de RF"
+app.title = "Indicadores de calidad"
 
 # Exponer el servidor Flask subyacente
 server = app.server

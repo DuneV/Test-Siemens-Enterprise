@@ -1,5 +1,3 @@
-# src/home/layout.py
-
 from dash import html, dcc
 import dash_bootstrap_components as dbc
 
@@ -23,42 +21,84 @@ layout = dbc.Container([
         ),
         style={"margin-top": "50px"},
     ),
-    # Botón para subir el archivo CSV
+    # Formulario para ingresar datos manualmente
+    dbc.Row(
+        [
+            dbc.Col(
+                [
+                    html.Label('Period', style={'textAlign': 'center', 'display': 'block'}),
+                    dcc.Input(
+                        id='input-1',
+                        type='number',
+                        placeholder='Ingresa el valor 1',
+                        style={'width': '100%', 'textAlign': 'center'}
+                    )
+                ],
+                width=4
+            ),
+            dbc.Col(
+                [
+                    html.Label('FY', style={'textAlign': 'center', 'display': 'block'}),
+                    dcc.Input(
+                        id='input-2',
+                        type='number',
+                        placeholder='Ingresa el valor 2',
+                        style={'width': '100%', 'textAlign': 'center'}
+                    )
+                ],
+                width=4
+            ),
+            dbc.Col(
+                [
+                    html.Label('Units tested', style={'textAlign': 'center', 'display': 'block'}),
+                    dcc.Input(
+                        id='input-3',
+                        type='number',
+                        placeholder='Ingresa el valor 3',
+                        style={'width': '100%', 'textAlign': 'center'}
+                    )
+                ],
+                width=4
+            ),
+            dbc.Col(
+                [
+                    html.Label('Units Failed', style={'textAlign': 'center', 'display': 'block'}),
+                    dcc.Input(
+                        id='input-4',
+                        type='number',
+                        placeholder='Ingresa el valor 4',
+                        style={'width': '100%', 'textAlign': 'center'}
+                    )
+                ],
+                width=4
+            )
+            
+        ],
+        justify="center",
+        style={"marginTop": "20px"}
+    ),
+    # Botón para enviar los datos
     dbc.Row(
         dbc.Col(
-            dcc.Upload(
-                id='upload-data',
-                children=html.Div([
-                    'Arrastra y suelta o ',
-                    html.A('selecciona un archivo CSV')
-                ]),
-                style={
-                    'width': '100%',
-                    'height': '80px',
-                    'lineHeight': '80px',
-                    'borderWidth': '2px',
-                    'borderStyle': 'dashed',
-                    'borderRadius': '5px',
-                    'textAlign': 'center',
-                    'margin': '10px'
-                },
-                multiple=False
-            ),
-            width={"size": 6, "offset": 3},
+            html.Button('Enviar', id='submit-button', n_clicks=0, className='btn btn-primary'),
+            width={"size": 4, "offset": 4},
+            className="d-flex justify-content-center",
+            style={"marginTop": "20px"}
         ),
     ),
-    # Mensajes de error o éxito
+    # Div para mostrar los datos ingresados
     dbc.Row(
         dbc.Col(
-            html.Div(id='upload-message', className='text-center'),
+            html.Div(id='output-data', className='text-center'),
             width=12,
+            style={"marginTop": "20px"}
         ),
     ),
     # Instrucciones
     dbc.Row(
         dbc.Col(
             html.P(
-                "Por favor, sube el archivo CSV para comenzar el análisis.",
+                "Por favor, ingresa los valores en los campos para comenzar el análisis.",
                 className="text-center",
             ),
             width=12,

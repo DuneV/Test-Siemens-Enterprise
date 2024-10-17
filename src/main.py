@@ -19,8 +19,6 @@ import interferences.callbacks
 import reports.callbacks
 import about.callbacks
 
-
-
 # Definir la barra de navegación
 navbar = dbc.Navbar(
     dbc.Container(
@@ -57,7 +55,7 @@ app.layout = html.Div(
         dcc.Location(id='url', refresh=False),
         dcc.Store(id='stored-data', storage_type='session'),  # Almacenar datos en la sesión
         navbar,  # Navbar que ya definiste
-        html.Div(id='page-content')
+        html.Div(id='page-content')  # Mantener el contenedor del contenido de la página
     ]
 )
 
@@ -85,7 +83,6 @@ def display_page(pathname):
             className="py-3",
             style={'backgroundColor': '#f0f8ff'}
         )
-
 
 
 if __name__ == '__main__':

@@ -50,7 +50,13 @@ navbar = dbc.Navbar(
 
 # Definir el layout de la aplicación
 app.layout = html.Div(
-    style={'backgroundColor': '#ffffff'},  # Cambiar el color de fondo aquí
+    style={
+        'backgroundImage': 'url("/assets/placeholder2.jpg")',  # Cambia la ruta a tu imagen
+        'backgroundSize': 'cover',  # Asegúrate de que la imagen cubra toda el área
+        'backgroundPosition': 'center',  # Centra la imagen
+        'height': '100vh',  # Altura de la ventana del navegador
+        'color': '#ffffff'  # Cambia el color del texto si es necesario
+    },
     children=[
         dcc.Location(id='url', refresh=False),
         dcc.Store(id='stored-data', storage_type='session'),  # Almacenar datos en la sesión

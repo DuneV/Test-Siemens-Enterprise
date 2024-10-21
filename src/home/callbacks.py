@@ -27,6 +27,8 @@ def process_manual_input(n_clicks, input1, input2, input3, input4):
             # Procesar los valores ingresados
             result = f'Valores ingresados: Periodo: {input1}, FY: {input2}, Units tested: {input3}, Units Failed: {input4}'      
 
+            # Subida a base de datos
+            process_info(input1=input1,input2=input2, input3=input3, input4=input4)
             # Mensaje de éxito
             success_msg = dbc.Alert(result, color="success")
             return success_msg
@@ -42,8 +44,8 @@ def process_info(input1, input2, input3, input4):
     # Crear una tabla si no existe
     cursor.execute('''CREATE TABLE IF NOT EXISTS inputs (
                      id INTEGER PRIMARY KEY AUTOINCREMENT,
-                     input1 TEXT,
-                     input2 INT,
+                     Periodo TEXT,
+                     FYS INT,
                      input3 INT, 
                      input4 INT
                    )''')
@@ -53,3 +55,5 @@ def process_info(input1, input2, input3, input4):
     
     conn.commit()
     conn.close()
+    
+    print("execute")

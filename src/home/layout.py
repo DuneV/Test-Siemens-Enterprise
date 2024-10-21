@@ -3,15 +3,15 @@ import dash_bootstrap_components as dbc
 
 layout = dbc.Container([
     # Logos
-    dbc.Row(
-        [
-            dbc.Col(html.Img(src="/assets/logo-siemens.png", height="100px"), width=6, className="d-flex justify-content-center")
-        ],
-        justify="center",
-        align="center",
-        style={"margin": "50px auto"},
-    ),
-    html.Hr(),
+    # dbc.Row(
+    #     [
+    #         dbc.Col(html.Img(src="/assets/logo-siemens.png", height="100px"), width=6, className="d-flex justify-content-center")
+    #     ],
+    #     justify="center",
+    #     align="center",
+    #     style={"margin": "50px auto"},
+    # ),
+    # html.Hr(),
     # Título
     dbc.Row(
         dbc.Col(

@@ -10,7 +10,7 @@ import numpy as np
 
 # Importar funciones y clases necesarias
 from utils.signal_analytics import SignalAnalytics
-from signal_analysis.logic import (
+from fpy_data.logic import (
     calculate_signal_parameters,
     generate_signal_spectrum,
     generate_signal_spectrogram,

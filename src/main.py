@@ -7,14 +7,14 @@ from app import app, server  # Importar la aplicación y el servidor
 
 # Importar los layouts de los módulos
 from home.layout import layout as home_layout
-from signal_analysis.layout import layout as signal_analysis_layout
+from fpy_data.layout import layout as fpy_data_layout
 from interferences.layout import layout as interferences_layout
 from reports.layout import layout as reports_layout
 from about.layout import layout as about_layout
 
 # Importar los callbacks de los módulos (esto registra los callbacks)
 import home.callbacks
-import signal_analysis.callbacks
+import fpy_data.callbacks
 import interferences.callbacks
 import reports.callbacks
 import about.callbacks
@@ -35,7 +35,7 @@ navbar = dbc.Navbar(
             dbc.Row(
             [
                 dbc.Col(dbc.NavbarBrand(html.Img(src = "/assets/resource_n1.png", height= "30px"), external_link=True,href="https://www.siemens-energy.com/co/es/home.html"), align="center"),
-                dbc.Col(html.H2("Siemens Quality Hub", className = "ml-2"), align="center"),
+                # dbc.Col(html.H2("Siemens Quality Hub", className = "ml-2"), align="center"),
 
             ],
         ),
@@ -45,40 +45,40 @@ navbar = dbc.Navbar(
                 dbc.NavLink(
                     [
                         html.Img(src="/assets/icons/flash.png", height="20px", style={'margin-right': '10px'}),  
-                        "Inicio"
+                        "Home"
                     ], 
                     href="/", active="exact", className="nav-link-custom"
                 ),
                 dbc.NavLink(
                     [
                         html.Img(src="/assets/icons/flash.png", height="20px", style={'margin-right': '10px'}),  
-                        "Análisis"
+                        "FPY Data"
                     ], 
-                    href="/signal-analysis", active="exact", className="nav-link-custom"
+                    href="/fpy_data", active="exact", className="nav-link-custom"
                 ),
                 dbc.NavLink(
                     [
                         html.Img(src="/assets/icons/flash.png", height="20px", style={'margin-right': '10px'}),  
-                        "Interferencias"
+                        "KPI's Module DT"
                     ], 
                     href="/interferences", active="exact", className="nav-link-custom"
                 ),
                 dbc.NavLink(
                     [
                         html.Img(src="/assets/icons/flash.png", height="20px", style={'margin-right': '10px'}),  
-                        "Reportes"
+                        "Report"
                     ], 
                     href="/reports", active="exact", className="nav-link-custom"
                 ),
                 dbc.NavLink(
                     [
                         html.Img(src="/assets/icons/flash.png", height="20px", style={'margin-right': '10px'}),  
-                        "Acerca de"
+                        "About"
                     ], 
                     href="/about", active="exact", className="nav-link-custom"
                 ),
             ],
-            className="me-auto",  # Esto alinea los enlaces a la izquierda
+            className="me-auto", 
             navbar=True,
         ),
         ]
@@ -111,8 +111,8 @@ app.layout =  html.Div(
 def display_page(pathname):
     if pathname == '/' or pathname == '/home':
         return home_layout
-    elif pathname == '/signal-analysis':
-        return signal_analysis_layout
+    elif pathname == '/fpy_data':
+        return fpy_data_layout
     elif pathname == '/interferences':
         return interferences_layout
     elif pathname == '/reports':

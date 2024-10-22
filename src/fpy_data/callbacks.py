@@ -14,7 +14,7 @@ from .logic import (
 )
 
 @callback(
-    Output('signal-analysis-content', 'children'),
+    Output('fpy-data-content', 'children'),
     Input('stored-data', 'data')
 )
 def update_signal_analysis(data_json):

@@ -44,11 +44,12 @@ def process_info(input1, input2, input3, input4):
     # Crear una tabla si no existe
     cursor.execute('''CREATE TABLE IF NOT EXISTS inputs (
                      id INTEGER PRIMARY KEY AUTOINCREMENT,
-                     Periodo TEXT,
-                     FYS INT,
-                     input3 INT, 
-                     input4 INT
+                     Period TEXT,
+                     FY INT,
+                     Units tested INT, 
+                     Units Failed INT
                    )''')
+    # Ojo cambiar valores segun tipo de dato revisar
     # Insertar los valores
     cursor.execute("INSERT INTO inputs (input1, input2, input3, input4) VALUES (?, ?, ?, ?)", 
                 (input1, input2, input3, input4))

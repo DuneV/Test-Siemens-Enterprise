@@ -19,29 +19,68 @@ import interferences.callbacks
 import reports.callbacks
 import about.callbacks
 
+# Definición de iconos
+# (CAMDBIAR NOMBRE)
+
+# icon_inbox = ""
+# icon_analitics = ""
+# icon_inter = ""
+# icon_report = ""
+
 # Definir la barra de navegación
 navbar = dbc.Navbar(
     dbc.Container(
         [
             # Logos
             dbc.Row(
-                [
-                    dbc.Col(dbc.NavbarBrand("Análisis de Requerimientos de S.T", className="ms-2")),
-                ],
-                align="center",
-                className="g-0",
-            ),
+            [
+                dbc.Col(dbc.NavbarBrand(html.Img(src = "/assets/resource_n1.png", height= "30px"), external_link=True,href="https://www.siemens-energy.com/co/es/home.html"), align="center"),
+                dbc.Col(html.H2("Siemens Quality Hub", className = "ml-2"), align="center"),
+
+            ],
+        ),
             # Navegación
-            dbc.Nav(
-                [
-                    dbc.NavLink("Inicio", href="/", active="exact"),
-                    dbc.NavLink("Análisis", href="/signal-analysis", active="exact"),
-                    dbc.NavLink("Interferencias", href="/interferences", active="exact"),
-                    dbc.NavLink("Reportes", href="/reports", active="exact"),
-                    dbc.NavLink("Acerca de", href="/about", active="exact"),
-                ],
-                navbar=True,
-            ),
+                dbc.Nav(
+            [
+                dbc.NavLink(
+                    [
+                        html.Img(src="/assets/icons/flash.png", height="20px", style={'margin-right': '10px'}),  
+                        "Inicio"
+                    ], 
+                    href="/", active="exact", className="nav-link-custom"
+                ),
+                dbc.NavLink(
+                    [
+                        html.Img(src="/assets/icons/flash.png", height="20px", style={'margin-right': '10px'}),  
+                        "Análisis"
+                    ], 
+                    href="/signal-analysis", active="exact", className="nav-link-custom"
+                ),
+                dbc.NavLink(
+                    [
+                        html.Img(src="/assets/icons/flash.png", height="20px", style={'margin-right': '10px'}),  
+                        "Interferencias"
+                    ], 
+                    href="/interferences", active="exact", className="nav-link-custom"
+                ),
+                dbc.NavLink(
+                    [
+                        html.Img(src="/assets/icons/flash.png", height="20px", style={'margin-right': '10px'}),  
+                        "Reportes"
+                    ], 
+                    href="/reports", active="exact", className="nav-link-custom"
+                ),
+                dbc.NavLink(
+                    [
+                        html.Img(src="/assets/icons/flash.png", height="20px", style={'margin-right': '10px'}),  
+                        "Acerca de"
+                    ], 
+                    href="/about", active="exact", className="nav-link-custom"
+                ),
+            ],
+            className="me-auto",  # Esto alinea los enlaces a la izquierda
+            navbar=True,
+        ),
         ]
     ),
     className="navbar-custom", 
@@ -49,12 +88,12 @@ navbar = dbc.Navbar(
 )
 
 # Definir el layout de la aplicación
-app.layout = html.Div(
+app.layout =  html.Div(
     style={
         'backgroundImage': 'url("/assets/placeholder2.jpg")',  # Cambia la ruta a tu imagen
         'backgroundSize': 'cover',  # Asegúrate de que la imagen cubra toda el área
         'backgroundPosition': 'center',  # Centra la imagen
-        'height': '100vh',  # Altura de la ventana del navegador
+        'height': '100vh',  # Altura de la ventana del navegadord
         'color': '#ffffff'  # Cambia el color del texto si es necesario
     },
     children=[
@@ -68,6 +107,7 @@ app.layout = html.Div(
 # Callback para actualizar el contenido de la página según la URL
 @app.callback(Output('page-content', 'children'),
               Input('url', 'pathname'))
+
 def display_page(pathname):
     if pathname == '/' or pathname == '/home':
         return home_layout

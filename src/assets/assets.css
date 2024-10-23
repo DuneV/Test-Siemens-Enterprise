@@ -2,4 +2,43 @@
     background-color: #1b1534 !important;  /* Color de fondo personalizado */
 }
 
+.navbar-custom-top {
+    background-color: #1b1534 !important; /* Top navbar background */
+    padding: 15px;
+}
 
+.navbar-custom-left {
+    background-color: #1b1534 !important; /* Left navbar background */
+    height: 100vh; /* Full height of the viewport */
+    padding-top: 20px;
+}
+.form-container {
+    background-color: rgba(255, 255, 255, 1); /* Opaque white */
+    border-radius: 8px; /* Optional: keep rounded corners */
+    padding: 20px;  /* Add padding */
+}
+
+.nav-links-left {
+    margin-left: 10px;
+}
+
+.nav-link-custom {
+    color: #ffffff !important;
+    font-size: 18px;
+    padding: 10px 15px;
+}
+
+.content-section {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);  /* Slightly transparent background */
+    border-radius: 8px;
+}
+
+@font-face {
+    font-family: 'SiemensFont';
+    src: url('assets/fonts/siemens.woff2') format('woff2'),
+         url('assets/fonts/siemens.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  

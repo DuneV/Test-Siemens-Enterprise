@@ -75,7 +75,8 @@ navbar = dbc.Navbar(
                         html.Img(src="/assets/icons/flash.png", height="20px", style={'margin-right': '10px'}),  
                         "About"
                     ], 
-                    href="/about", active="exact", className="nav-link-custom"
+                    href="/about", active="exact", className="nav-link-custom",
+                    style={"font-family": "Roboto, sans-serif","font-size": "36px"}
                 ),
             ],
             className="me-auto", 
@@ -84,17 +85,17 @@ navbar = dbc.Navbar(
         ]
     ),
     className="navbar-custom", 
-    dark=True,
+    dark=False,
 )
 
 # Definir el layout de la aplicación
 app.layout =  html.Div(
     style={
-        'backgroundImage': 'url("/assets/placeholder2.jpg")',  # Cambia la ruta a tu imagen
+        # 'backgroundImage': 'url("/assets/placeholder2.jpg")',  # Cambia la ruta a tu imagen
         'backgroundSize': 'cover',  # Asegúrate de que la imagen cubra toda el área
         'backgroundPosition': 'center',  # Centra la imagen
         'height': '100vh',  # Altura de la ventana del navegadord
-        'color': '#ffffff'  # Cambia el color del texto si es necesario
+        'color': '#000000'  # Cambia el color del texto si es necesario
     },
     children=[
         dcc.Location(id='url', refresh=False),

@@ -1,35 +1,105 @@
-# src/signal_analysis/layout.py
-
-from dash import html
+# src/fpy_data/layout.py
+from dash import html, dcc
 import dash_bootstrap_components as dbc
-card = dbc.Card(
+
+# Layout for FPY Data page
+layout = dbc.Container(
     [
-        dbc.CardImg(
-            src="/static/images/placeholder286x180.png",
-            top=True,
-            style={"opacity": 0.3},
+        dbc.Row(
+            [
+                dbc.Col(html.H2("FPY Data", className="text-center")),
+                dbc.Col(
+                    dbc.Button("New FPY", color="primary", className="ml-auto"), width="auto"
+                ),
+            ],
+            justify="between",  # Align items horizontally
         ),
-        dbc.CardImgOverlay(
-            dbc.CardBody(
-                [
-                    html.H4("Card title", className="card-title"),
-                    html.P(
-                        "An example of using an image in the background of "
-                        "a card.",
-                        className="card-text",
-                    ),
-                    dbc.Button("Go somewhere", color="primary"),
-                ],
-            ),
+        html.Br(),
+        
+        # Filters section
+        dbc.Row(
+            [
+                dbc.Col(dcc.Dropdown(
+                    id='fiscal-year-dropdown',
+                    options=[
+                        {'label': '2024', 'value': '2024'},
+                        {'label': '2023', 'value': '2023'}
+                    ],
+                    placeholder="Select FY",
+                    className="mb-3"
+                )),
+                dbc.Col(dcc.Dropdown(
+                    id='month-dropdown',
+                    options=[
+                        {'label': 'P01', 'value': 'P01'},
+                        {'label': 'P02', 'value': 'P02'}
+                    ],
+                    placeholder="Select Month",
+                    className="mb-3"
+                )),
+                dbc.Col(dcc.Dropdown(
+                    id='production-line-dropdown',
+                    options=[
+                        {'label': 'SDT', 'value': 'SDT'},
+                        {'label': 'MDT', 'value': 'MDT'}
+                    ],
+                    placeholder="Select Production Line",
+                    className="mb-3"
+                )),
+                dbc.Col(dbc.Input(
+                    id='tested-units-input',
+                    type='number',
+                    placeholder="Tested Units",
+                    className="mb-3"
+                )),
+                dbc.Col(dbc.Input(
+                    id='failed-units-input',
+                    type='number',
+                    placeholder="Failed Units",
+                    className="mb-3"
+                )),
+            ],
+            className="mb-4"
+        ),
+        
+        # Data Tables section
+        dbc.Row(
+            [
+                dbc.Col(
+                    dbc.Card(
+                        dbc.CardBody(
+                            [
+                                html.H5("SDT", className="card-title"),
+                                html.P("FY: 2024 | Month: P01"),
+                                html.P("Tested Units: 100 | Failed Units: 1"),
+                            ]
+                        ),
+                    ), width=4
+                ),
+                dbc.Col(
+                    dbc.Card(
+                        dbc.CardBody(
+                            [
+                                html.H5("MDT", className="card-title"),
+                                html.P("FY: 2024 | Month: P03"),
+                                html.P("Tested Units: 1000 | Failed Units: 1"),
+                            ]
+                        ),
+                    ), width=4
+                ),
+                dbc.Col(
+                    dbc.Card(
+                        dbc.CardBody(
+                            [
+                                html.H5("LDT", className="card-title"),
+                                html.P("No data available"),
+                            ]
+                        ),
+                    ), width=4
+                ),
+            ],
         ),
     ],
-    style={"width": "18rem"},
+    fluid=True,
+    className="p-4",
 )
-layout = dbc.Container([
-    html.H2("FPY Data", style={'margin-top': '20px'}),
-    html.Hr(),
-    # Contenedor para el contenido dinámico
-    html.Div(id='fpy-data-content'),
-])
-
-

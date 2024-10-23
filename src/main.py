@@ -47,28 +47,32 @@ navbar = dbc.Navbar(
                         html.Img(src="/assets/icons/flash.png", height="20px", style={'margin-right': '10px'}),  
                         "Home"
                     ], 
-                    href="/", active="exact", className="nav-link-custom"
+                    href="/", active="exact", className="nav-link-custom",
+                    style={"font-family": "Roboto, sans-serif","font-size": "15px"}
                 ),
                 dbc.NavLink(
                     [
                         html.Img(src="/assets/icons/flash.png", height="20px", style={'margin-right': '10px'}),  
                         "FPY Data"
                     ], 
-                    href="/fpy_data", active="exact", className="nav-link-custom"
+                    href="/fpy_data", active="exact", className="nav-link-custom", 
+                    style={"font-family": "Roboto, sans-serif","font-size": "15px"}
                 ),
                 dbc.NavLink(
                     [
                         html.Img(src="/assets/icons/flash.png", height="20px", style={'margin-right': '10px'}),  
                         "KPI's Module DT"
                     ], 
-                    href="/interferences", active="exact", className="nav-link-custom"
+                    href="/interferences", active="exact", className="nav-link-custom",
+                    style={"font-family": "Roboto, sans-serif","font-size": "15px"}
                 ),
                 dbc.NavLink(
                     [
                         html.Img(src="/assets/icons/flash.png", height="20px", style={'margin-right': '10px'}),  
                         "Report"
                     ], 
-                    href="/reports", active="exact", className="nav-link-custom"
+                    href="/reports", active="exact", className="nav-link-custom",
+                    style={"font-family": "Roboto, sans-serif","font-size": "15px"}
                 ),
                 dbc.NavLink(
                     [
@@ -76,7 +80,7 @@ navbar = dbc.Navbar(
                         "About"
                     ], 
                     href="/about", active="exact", className="nav-link-custom",
-                    style={"font-family": "Roboto, sans-serif","font-size": "36px"}
+                    style={"font-family": "Roboto, sans-serif","font-size": "15px"}
                 ),
             ],
             className="me-auto", 

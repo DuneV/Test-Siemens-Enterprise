@@ -9,7 +9,11 @@ layout = dbc.Container(
             [
                 dbc.Col(html.H2("FPY Data", className="text-center")),
                 dbc.Col(
-                    dbc.Button("New FPY", color="primary", className="ml-auto"), width="auto"
+                    # dbc.Button("New FPY", color="primary", className="ml-auto"), width="auto"
+                    html.Button('New FPY', id='fpy-button', n_clicks=0, className='btn btn-primary'),
+                    width={"size": 4, "offset": 4},
+                    # className="d-flex justify-content-rigth",
+                    # style={"marginTop": "20px"}
                 ),
             ],
             justify="between",  # Align items horizontally

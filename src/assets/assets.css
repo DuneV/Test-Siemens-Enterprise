@@ -34,11 +34,19 @@
     border-radius: 8px;
 }
 
+.edit-inputs {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.2rem rgba(64, 64, 65, 0.349);
+}
+
 @font-face {
     font-family: 'SiemensFont';
     src: url('assets/fonts/siemens.woff2') format('woff2'),
          url('assets/fonts/siemens.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-  }
+}
   

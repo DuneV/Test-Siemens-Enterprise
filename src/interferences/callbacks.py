@@ -13,9 +13,17 @@ from .logic import (
 )
 
 @callback(
-    Output('interference-content', 'children'),
-    Input('stored-data', 'data'),
+    Output('interference-content', 'children'),  # Actualiza el contenido de otro componente
+    Input('card-button', 'n_clicks')  
 )
+
+def handle_card_click(n_clicks):
+    if n_clicks > 0:
+        print("jjjj")
+        return f"The card has been clicked {n_clicks} times!"
+    return "Click on the card to see what happens."
+
+
 def update_interference_analysis(data_json):
     """
     Callback para actualizar el contenido de la página de interferencias.

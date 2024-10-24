@@ -13,7 +13,7 @@ def toggle_modal(n1, n2, is_open):
         return not is_open
     return is_open
 
-# Callback para actualizar la tabla 
+# Callback para actualizar la tabla basada en los filtros
 @callback(
     Output("filtered-table", "children"),
     [

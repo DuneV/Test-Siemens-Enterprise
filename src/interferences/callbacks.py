@@ -1,113 +1,78 @@
 # src/interferences/callbacks.py
 
-from dash import Input, Output, State, callback, html, dcc
+from dash import Input, Output, State, callback, html, dcc, ctx
 import dash_bootstrap_components as dbc
+import json
 import pandas as pd
 
-from app import app  # Importar la instancia de la aplicación
-# from .logic import (
-#     detect_interferences,
-#     generate_interference_table,
-#     generate_interference_spectrum,
-#     generate_suavizado_plot
-# )
+from app import app  
 
-@callback(
-    Output('interference-content', 'children'),  # Actualiza el contenido de otro componente
-    Input('card-button', 'n_clicks')  
-)
+# Callbacks para manejar los botones
 
-def handle_card_click(n_clicks):
-    if n_clicks > 0:
-        print("jjjj")
-        return f"The card has been clicked {n_clicks} times!"
-    return "Click on the card to see what happens."
+@callback(Output('container', 'children'),
+              Input('general-report', 'n_clicks'),
+              Input('btn-2', 'n_clicks'),
+              Input('btn-3', 'n_clicks'),
+              Input('btn-4', 'n_clicks'),
+              Input('btn-5', 'n_clicks'),
+              Input('btn-6', 'n_clicks'),
+              Input('btn-7', 'n_clicks'),
+              Input('btn-8', 'n_clicks'),
+              Input('btn-9', 'n_clicks'),
+              Input('btn-10', 'n_clicks'))
 
 
-def update_interference_analysis(data_json):
-    """
-    Callback para actualizar el contenido de la página de interferencias.
+def display(btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10):
+    button_id = ctx.triggered_id if not None else 'No clicks yet'
 
-    Parameters:
-    - data_json: str (JSON)
-        Datos almacenados en 'stored-data', en formato JSON.
+    ctx_msg = json.dumps({
+        'states': ctx.states,
+        'triggered': ctx.triggered,
+        'inputs': ctx.inputs
+    }, indent=2)
 
-    Returns:
-    - content: list of Dash components
-        Contenido a mostrar en la página, ya sea la alerta o los componentes de interferencia.
-    """
-    if data_json is None:
-        # Si no hay datos, mostrar una alerta
-        alert_message = dbc.Alert(
-            "No hay datos cargados. Por favor, sube un archivo CSV en la sección Inicio.",
-            color="warning",
-            dismissable=False,
-            style={'text-align': 'center'}
-        )
-        return alert_message
-    else:
-        # Convertir los datos de JSON a DataFrame
-        df = pd.read_json(data_json, orient='split')
+    return html.Div([
+        html.Table([
+            html.Tr([html.Th('Button 1'),
+                     html.Th('Button 2'),
+                     html.Th('Button 3'),
+                     html.Th('Button 4'),
+                     html.Th('Button 5'),
+                     html.Th('Button 6'),
+                     html.Th('Button 7'),
+                     html.Th('Button 8'),
+                     html.Th('Button 9'),
+                     html.Th('Button 10'),
+                     html.Th('Most Recent Click')]),
+            html.Tr([html.Td(btn1 or 0),
+                     html.Td(btn2 or 0),
+                     html.Td(btn3 or 0),
+                     html.Td(btn4 or 0),
+                     html.Td(btn5 or 0),
+                     html.Td(btn6 or 0),
+                     html.Td(btn7 or 0),
+                     html.Td(btn8 or 0),
+                     html.Td(btn9 or 0),
+                     html.Td(btn10 or 0),
+                     html.Td(button_id)])
+        ]),
+        html.Pre(ctx_msg)
+    ])
 
-        # Detectar interferencias
-        interference_list = detect_interferences(df)
 
-        # Guardar la lista de interferencias en un componente de almacenamiento oculto
-        interference_data = pd.DataFrame(interference_list).to_json(date_format='iso', orient='split')
+# @callback(
+#     Output('interference-content', 'children'),  # Actualiza el contenido según el botón
+#         Input('card-button', 'n_clicks'),
+#         Input('otd-button', 'n_clicks'),
+#         Input('fpy-button', 'n_clicks'))
 
-        # Generar tabla de interferencias
-        interference_table = generate_interference_table(interference_list)
 
-        # Generar espectro con interferencias marcadas
-        interference_spectrum_fig = generate_interference_spectrum(df, interference_list)
-
-        # Generar gráfico de efecto del suavizado
-        suavizado_fig = generate_suavizado_plot(df)
-
-        # Construir el contenido completo
-        content = [
-            # Componente oculto para almacenar la lista de interferencias
-            dcc.Store(id='stored-interferences', data=interference_data),
-            # Sección para mostrar la tabla de interferencias detectadas
-            dbc.Row(
-                [
-                    dbc.Col(
-                        [
-                            html.H4("Interferencias Detectadas"),
-                            interference_table,
-                        ],
-                        width=12,
-                    ),
-                ],
-                className='mb-4',
-            ),
-            # Gráfico del Espectro con Interferencias
-            dbc.Row(
-                [
-                    dbc.Col(
-                        [
-                            html.H4("Espectro con Interferencias Marcadas"),
-                            dcc.Graph(figure=interference_spectrum_fig),
-                        ],
-                        width=12,
-                    ),
-                ],
-                className='mb-4',
-            ),
-            # Gráfico de Efecto del Suavizado
-            dbc.Row(
-                [
-                    dbc.Col(
-                        [
-                            html.H4("Efecto del Suavizado"),
-                            dcc.Graph(figure=suavizado_fig)
-                        ],
-                        width=12,
-                    ),
-                ],
-                className='mb-4',
-            ),
-        ]
-
-        return content
-
+# def handle_card_click(btn1, btn2, btn3):
+#     button_id = ctx.triggered_id if not None else 'No clicks yet'
+#     ctx_msg = json.dumps({
+#             'states': ctx.states,
+#             'triggered': ctx.triggered,
+#             'inputs': ctx.inputs
+#         }, indent=2)
+#     print(ctx_msg)
+#     return "Click en una tarjeta para ver detalles."

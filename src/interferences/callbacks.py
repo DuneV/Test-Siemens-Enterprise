@@ -5,12 +5,12 @@ import dash_bootstrap_components as dbc
 import pandas as pd
 
 from app import app  # Importar la instancia de la aplicación
-from .logic import (
-    detect_interferences,
-    generate_interference_table,
-    generate_interference_spectrum,
-    generate_suavizado_plot
-)
+# from .logic import (
+#     detect_interferences,
+#     generate_interference_table,
+#     generate_interference_spectrum,
+#     generate_suavizado_plot
+# )
 
 @callback(
     Output('interference-content', 'children'),  # Actualiza el contenido de otro componente

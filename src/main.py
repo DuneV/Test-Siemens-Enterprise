@@ -48,7 +48,7 @@ navbar = dbc.Navbar(
                         "Home"
                     ], 
                     href="/", active="exact", className="nav-link-custom",
-                    style={"font-family": "Roboto, sans-serif","font-size": "15px"}
+                    style={"font-family": "Roboto, sans-serif","font-size": "15px","fontWeight": "bold"}
                 ),
                 dbc.NavLink(
                     [
@@ -56,7 +56,7 @@ navbar = dbc.Navbar(
                         "FPY Data"
                     ], 
                     href="/fpy_data", active="exact", className="nav-link-custom", 
-                    style={"font-family": "Roboto, sans-serif","font-size": "15px"}
+                    style={"font-family": "Roboto, sans-serif","font-size": "15px","fontWeight": "bold"}
                 ),
                 dbc.NavLink(
                     [
@@ -64,7 +64,7 @@ navbar = dbc.Navbar(
                         "KPI's Module DT"
                     ], 
                     href="/interferences", active="exact", className="nav-link-custom",
-                    style={"font-family": "Roboto, sans-serif","font-size": "15px"}
+                    style={"font-family": "Roboto, sans-serif","font-size": "15px","fontWeight": "bold"}
                 ),
                 dbc.NavLink(
                     [
@@ -72,7 +72,7 @@ navbar = dbc.Navbar(
                         "Report"
                     ], 
                     href="/reports", active="exact", className="nav-link-custom",
-                    style={"font-family": "Roboto, sans-serif","font-size": "15px"}
+                    style={"font-family": "Roboto, sans-serif","font-size": "15px","fontWeight": "bold"}
                 ),
                 dbc.NavLink(
                     [
@@ -80,7 +80,7 @@ navbar = dbc.Navbar(
                         "About"
                     ], 
                     href="/about", active="exact", className="nav-link-custom",
-                    style={"font-family": "Roboto, sans-serif","font-size": "15px"}
+                    style={"font-family": "Roboto, sans-serif","font-size": "15px","fontWeight": "bold"}
                 ),
             ],
             className="me-auto", 
@@ -95,7 +95,7 @@ navbar = dbc.Navbar(
 # Definir el layout de la aplicación
 app.layout =  html.Div(
     style={
-        # 'backgroundImage': 'url("/assets/placeholder2.jpg")',  # Cambia la ruta a tu imagen
+        # 'backgroundImage': 'linear-gradient(to right, #ff7e5f, #feb47b)',  # Cambia la ruta a tu imagen
         'backgroundSize': 'cover',  # Asegúrate de que la imagen cubra toda el área
         'backgroundPosition': 'center',  # Centra la imagen
         'height': '100vh',  # Altura de la ventana del navegadord

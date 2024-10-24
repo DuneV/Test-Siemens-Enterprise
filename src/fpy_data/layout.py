@@ -7,18 +7,34 @@ layout = dbc.Container(
     [
         dbc.Row(
             [
-                dbc.Col(html.H2("FPY Data", className="text-center")),
+                dbc.Col(html.H2("FPY Data", className="text-left")),
                 dbc.Col(
-                    # dbc.Button("New FPY", color="primary", className="ml-auto"), width="auto"
-                    html.Button('New FPY', id='fpy-button', n_clicks=0, className='btn btn-primary'),
-                    width={"size": 4, "offset": 4},
-                    # className="d-flex justify-content-rigth",
-                    # style={"marginTop": "20px"}
+                    html.Button('New FPY', id='fpy-button', n_clicks=0, className='btn btn-secondary float-right', style={'background-color': '#1b1534', 'color': 'white', "fontWeight": "bold"} ), 
+                    width="auto"
                 ),
             ],
-            justify="between",  # Align items horizontally
+            justify="between",  # Align items 
         ),
         html.Br(),
+        
+        # Pop-up 
+        dbc.Modal(
+            [
+                dbc.ModalHeader("Add New FPY Record"),
+                dbc.ModalBody([
+                    dbc.Input(id="modal-input-fy", placeholder="Fiscal Year", type="text"),
+                    dbc.Input(id="modal-input-month", placeholder="Month", type="text"),
+                    dbc.Input(id="modal-input-production-line", placeholder="Production Line", type="text"),
+                    dbc.Input(id="modal-input-tested-units", placeholder="Tested Units", type="number"),
+                    dbc.Input(id="modal-input-failed-units", placeholder="Failed Units", type="number"),
+                ]),
+                dbc.ModalFooter(
+                    html.Button("Submit", id="modal-submit-button", n_clicks=0, className='btn btn-secondary float-right', style={'background-color': '#1b1534', 'color': 'white', "fontWeight": "bold"})
+                ),
+            ],
+            id="fpy-modal",
+            is_open=False,
+        ),
         
         # Filters section
         dbc.Row(
@@ -30,75 +46,98 @@ layout = dbc.Container(
                         {'label': '2023', 'value': '2023'}
                     ],
                     placeholder="Select FY",
-                    className="mb-3"
-                )),
+                ), width=2),
                 dbc.Col(dcc.Dropdown(
                     id='month-dropdown',
                     options=[
                         {'label': 'P01', 'value': 'P01'},
-                        {'label': 'P02', 'value': 'P02'}
+                        {'label': 'P02', 'value': 'P02'},
+                        {'label': 'P03', 'value': 'P03'},
+                        {'label': 'P04', 'value': 'P04'},
+                        {'label': 'P05', 'value': 'P05'},
+                        {'label': 'P06', 'value': 'P06'},
+                        {'label': 'P07', 'value': 'P07'},
+                        {'label': 'P08', 'value': 'P08'},
+                        {'label': 'P09', 'value': 'P09'},
+                        {'label': 'P10', 'value': 'P10'},
+                        {'label': 'P11', 'value': 'P11'},
+                        {'label': 'P12', 'value': 'P12'}
                     ],
                     placeholder="Select Month",
-                    className="mb-3"
-                )),
+                ), width=2),
                 dbc.Col(dcc.Dropdown(
                     id='production-line-dropdown',
                     options=[
                         {'label': 'SDT', 'value': 'SDT'},
-                        {'label': 'MDT', 'value': 'MDT'}
+                        {'label': 'MDT', 'value': 'MDT'},
+                        {'label': 'LDT', 'value': 'LDT'}
                     ],
                     placeholder="Select Production Line",
-                    className="mb-3"
-                )),
+                ), width=2),
                 dbc.Col(dbc.Input(
                     id='tested-units-input',
                     type='number',
                     placeholder="Tested Units",
-                    className="mb-3"
-                )),
+                ), width=2),
                 dbc.Col(dbc.Input(
                     id='failed-units-input',
                     type='number',
                     placeholder="Failed Units",
-                    className="mb-3"
-                )),
+                ), width=2),
             ],
             className="mb-4"
         ),
         
-        # Data Tables section
+        # Table preview based on filters
         dbc.Row(
             [
                 dbc.Col(
-                    dbc.Card(
-                        dbc.CardBody(
-                            [
-                                html.H5("SDT", className="card-title"),
-                                html.P("FY: 2024 | Month: P01"),
-                                html.P("Tested Units: 100 | Failed Units: 1"),
-                            ]
-                        ),
+                    dbc.Table(
+                        id="filtered-table",
+                        bordered=True, hover=True, responsive=True, striped=True,
+                    ), width=12
+                ),
+            ],
+            className="mb-4"
+        ),
+        
+        # Data Tables section by category (SDT, MDT, LDT)
+        dbc.Row(
+            [
+                dbc.Col(
+                    dbc.Table(
+                        # SDT Table
+                        children=[
+                            html.Thead(html.Tr([html.Th("FY"), html.Th("Month"), html.Th("Tested Units"), html.Th("Failed Units")])),
+                            html.Tbody([
+                                html.Tr([html.Td("2024"), html.Td("P01"), html.Td("100"), html.Td("1")]),
+                            ])
+                        ],
+                        bordered=True, hover=True, responsive=True, striped=True,
                     ), width=4
                 ),
                 dbc.Col(
-                    dbc.Card(
-                        dbc.CardBody(
-                            [
-                                html.H5("MDT", className="card-title"),
-                                html.P("FY: 2024 | Month: P03"),
-                                html.P("Tested Units: 1000 | Failed Units: 1"),
-                            ]
-                        ),
+                    dbc.Table(
+                        # MDT Table
+                        children=[
+                            html.Thead(html.Tr([html.Th("FY"), html.Th("Month"), html.Th("Tested Units"), html.Th("Failed Units")])),
+                            html.Tbody([
+                                html.Tr([html.Td("2024"), html.Td("P03"), html.Td("1000"), html.Td("1")]),
+                            ])
+                        ],
+                        bordered=True, hover=True, responsive=True, striped=True,
                     ), width=4
                 ),
                 dbc.Col(
-                    dbc.Card(
-                        dbc.CardBody(
-                            [
-                                html.H5("LDT", className="card-title"),
-                                html.P("No data available"),
-                            ]
-                        ),
+                    dbc.Table(
+                        # LDT Table
+                        children=[
+                            html.Thead(html.Tr([html.Th("FY"), html.Th("Month"), html.Th("Tested Units"), html.Th("Failed Units")])),
+                            html.Tbody([
+                                html.Tr([html.Td("No data available"), html.Td("-"), html.Td("-"), html.Td("-")]),
+                            ])
+                        ],
+                        bordered=True, hover=True, responsive=True, striped=True,
                     ), width=4
                 ),
             ],

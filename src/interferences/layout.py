@@ -3,7 +3,6 @@ from dash import html
 import dash_bootstrap_components as dbc
 
 layout = dbc.Container([
-    # Header with city skyline background and title
     dbc.Row(
         dbc.Col(
             html.H2("KPI's Module - DT", style={'color': 'white', 'background-image': 'linear-gradient(to right, #6c5ce7, #3498db)'}),
@@ -12,7 +11,6 @@ layout = dbc.Container([
         style={'background-image': 'linear-gradient(to right, #6c5ce7, #3498db)', 'padding': '20px'}
     ),
     
-    # General Report section
     dbc.Row(
         dbc.Col(
             html.Div([
@@ -24,7 +22,6 @@ layout = dbc.Container([
         style={'text-align': 'center', 'margin-top': '20px'}
     ),
     
-    # KPI tiles
     dbc.Row(
         [
             dbc.Col(
